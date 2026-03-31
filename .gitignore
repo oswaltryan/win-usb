@@ -1,0 +1,36 @@
+# Build directories
+/build/
+/out/
+
+# CMake generated files (in-source builds)
+/CMakeCache.txt
+/CMakeFiles/
+/cmake_install.cmake
+/compile_commands.json
+/CTestTestfile.cmake
+/install_manifest.txt
+/Testing/
+/CMakeUserPresets.json
+
+# Visual Studio / MSVC user-local files
+/.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+
+# Generated Visual Studio project/solution files
+*.sln
+*.slnx
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# pre-commit cache
+.pre-commit-cache/
+
+# Local CI logs
+ci_log.txt
+*.log

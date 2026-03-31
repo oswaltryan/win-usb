@@ -1,0 +1,25 @@
+#ifndef WINDOWS_NATIVE_SCAN_STORAGE_H
+#define WINDOWS_NATIVE_SCAN_STORAGE_H
+
+#include "winusb/common.h"
+
+bool get_disk_number_from_path(const wchar_t* path, int* disk_number_out);
+void collect_drive_letter_map(DriveLetterVec* map);
+const wchar_t* lookup_drive_letters(const DriveLetterVec* map, int disk_number);
+void free_drive_letter_map(DriveLetterVec* map);
+bool get_physical_drive_metrics(int disk_number,
+                                double* size_gb_raw_out,
+                                bool* oob_mode_out,
+                                int* read_only_out,
+                                double* bcd_usb_out);
+bool get_device_path_metrics(const wchar_t* device_path,
+                             double* size_gb_raw_out,
+                             bool* oob_mode_out,
+                             int* read_only_out);
+bool get_size_from_drive_letters(const char* letters_csv, double* size_gib_out);
+bool derive_filesystem_for_disk(int disk_number,
+                                const wchar_t* drive_letters,
+                                wchar_t* filesystem_out,
+                                size_t filesystem_out_cap);
+
+#endif

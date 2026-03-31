@@ -1,0 +1,59 @@
+minimum_pre_commit_version: "4.0.0"
+default_stages: [pre-commit]
+
+repos:
+  - repo: local
+    hooks:
+      - id: whitespace-eof
+        name: whitespace/eof check
+        entry: python scripts/hooks/check_whitespace_eof.py
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: clang-format-check
+        name: clang-format check
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/run_clang_format_check.ps1
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: cmakelint
+        name: cmakelint
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/run_cmakelint.ps1
+        language: system
+        pass_filenames: false
+        always_run: true
+        files: (^CMakeLists\.txt$|\.cmake$)
+
+      - id: clang-tidy
+        name: clang-tidy
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/run_clang_tidy.ps1
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push, manual]
+
+      - id: cppcheck
+        name: cppcheck
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/run_cppcheck.ps1
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push, manual]
+
+      - id: build-release
+        name: build release
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/run_build.ps1
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push, manual]
+
+      - id: unit-tests
+        name: unit tests
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/run_unit_tests.ps1
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push, manual]
