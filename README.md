@@ -59,29 +59,25 @@ This repo uses `pre-commit` for local pipeline checks.
 
 ### Required tools
 
-- `pre-commit` (Python package)
-- `cmakelint` (Python package)
+- `pre-commit`
+- `cmakelint`
 - `clang-format`
 - `clang-tidy`
 - `cppcheck`
-
-Install Python tools:
-
-```powershell
-python -m pip install --user pre-commit cmakelint
-```
 
 Install native tools:
 
 - LLVM tools (`clang-format`, `clang-tidy`)
 - Cppcheck (`cppcheck`)
+- `pre-commit`
+- `cmakelint`
 
 ### Run checks
 
 Run quick checks (format/lint stage):
 
 ```powershell
-python -m pre_commit run --all-files --hook-stage pre-commit
+pre-commit run --all-files --hook-stage pre-commit
 ```
 
 Run full local pipeline:
@@ -93,13 +89,13 @@ Run full local pipeline:
 Equivalent full pre-commit commands:
 
 ```powershell
-python -m pre_commit run --all-files --hook-stage pre-commit
-python -m pre_commit run --all-files --hook-stage pre-push
+pre-commit run --all-files --hook-stage pre-commit
+pre-commit run --all-files --hook-stage pre-push
 ```
 
 Install hooks into Git:
 
 ```powershell
-python -m pre_commit install
-python -m pre_commit install --hook-type pre-push
+pre-commit install
+pre-commit install --hook-type pre-push
 ```
